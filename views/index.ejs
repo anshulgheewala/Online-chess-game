@@ -8,63 +8,71 @@
     
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <style>
+    .chessboard {
+        display: grid;
+        grid-template-columns: repeat(8, 1fr);
+        grid-template-rows: repeat(8, 1fr);
+        width: 90vmin;
+        height: 90vmin;
+        max-width: 100%;
+        max-height: 100%;
+        margin: auto;
+        transform: rotate(0deg);
+    }
 
-        .chessboard {
-            display: grid;
-            grid-template-columns: repeat(8, minmax(0, 1fr));
-            grid-template-rows: repeat(8, minmax(0, 1fr));
-            width: 700px;
-            height: 700px;
-            transform: rotate(0deg);
-        }
+    .piece.white {
+        color: white;
+        filter: drop-shadow(0 0 2px rgba(0, 0, 0, 1));
+    }
 
-        .piece.white {
-            color: white;
-            filter: drop-shadow(0 0 2px rgba(0, 0, 0, 1));
-        }
+    .piece.black {
+        color: black;
+    }
 
-        .piece.black {
-            color: black;
-        }
+    .flipped {
+        transform: rotate(180deg);
+    }
 
-        .flipped {
-            transform: rotate(180deg);
-        }
+    .square {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        aspect-ratio: 1 / 1;
+    }
 
-        .square {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+    .square.light {
+        background-color: #f0d9b5;
+    }
 
-        .square.light {
-            background-color: #f0d9b5;
-            /* background-color: white; */
-        }
+    .square.dark {
+        background-color: #b58863;
+    }
 
-        .square.dark {
-            background-color: #b58863;
-            /* background-color: black; */
-        }
+    .piece {
+        font-size: 4vmin;
+        cursor: pointer;
+    }
 
+    .piece.draggable {
+        cursor: grab;
+    }
+
+    .dragging {
+        opacity: 0.5;
+    }
+
+    /* Rotate pieces for black player */
+    .flipped .piece {
+        transform: rotate(180deg);
+    }
+
+    @media (max-width: 600px) {
         .piece {
-            font-size: 36px;
-            cursor: pointer;
+            font-size: 6vmin;
         }
+    }
+</style>
 
-        .piece.draggable {
-            cursor: grab;
-        }
-
-        .dragging {
-            opacity: 0.5;
-        }
-
-        /* Rotate pieces for black player */
-        .flipped .piece {
-            transform: rotate(180deg);
-        }
-    </style>
 </head>
 <body>
     <div class="w-full h-screen flex flex-col items-center justify-center bg-zinc-900">
